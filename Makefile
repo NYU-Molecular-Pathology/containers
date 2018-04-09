@@ -17,9 +17,12 @@ bcftools-1.7: check-docker
 # ~~~~~~~ SETUP DOCKER CONTAINERS ~~~~~ #
 build: base
 
+build-$(VAR): base
+	cd $(VAR) && docker build -t stevekm/containers:$(VAR) .
+
 # ~~~~~~ TEST CONTAINERS ~~~~~ #
 test-base: base
 	docker run --rm -ti stevekm/containers:base bash
 
-test: $(VAR)
+test: build-$(VAR)
 	docker run --rm -ti stevekm/containers:$(VAR) bash
