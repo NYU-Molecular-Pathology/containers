@@ -3,7 +3,7 @@ From: broadinstitute/gatk3:3.8-0
 
 %post
     echo '#!/bin/bash' > /usr/gatk.sh
-    echo 'java -jar ./GenomeAnalysisTK.jar "$@"' >> /usr/gatk.sh
+    echo 'java -jar "$(dirname $0)"/GenomeAnalysisTK.jar "$@"' >> /usr/gatk.sh
     chmod a+x /usr/gatk.sh
 
 %test
