@@ -22,6 +22,12 @@ check-singularityfile:
 check-singularityimage:
 	@[ ! -f "$(IMG)" ] && { echo ">>> ERROR: Singularity image file '$(IMG)' does not exist" ; exit 1 ; } || :
 
+check-Dockerfile:
+	@[ ! -f "$(DOCKERFILE)" ] && { echo ">>> ERROR: DOCKERFILE file '$(DOCKERFILE)' does not exist" ; exit 1 ; } || :
+
+check-Docker-image:
+	@docker image inspect "$(DOCKERTAG)" >/dev/null 2>&1
+
 # ~~~~~~ SETUP ~~~~~ #
 Vagrantfile:
 	vagrant init singularityware/singularity-2.4
@@ -72,3 +78,19 @@ singularity-build-all:
 	echo "$$item" ;\
 	done
 # $(MAKE) singularity-build VAR=$${item}
+
+# ~~~~~ DOCKER ~~~~~ #
+DOCKERFILE:=$(VAR)/Dockerfile
+DOCKERREPO:=stevekm/containers
+DOCKERTAG:=$(DOCKERREPO):$(VAR)
+docker-build:
+	@$(MAKE) check-Docker
+	@$(MAKE) check-var
+	@$(MAKE) check-var-dir
+	@$(MAKE) check-Dockerfile
+	cd $(VAR) && \
+	docker build -t "$(DOCKERTAG)" .
+
+docker-test:
+	@$(MAKE) check-Docker-image || { echo ">>> Docker image does not exist, building...";  $(MAKE) docker-build; }
+	@docker run --rm -ti "$(DOCKERTAG)" bash
