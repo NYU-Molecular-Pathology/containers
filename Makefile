@@ -79,6 +79,18 @@ singularity-build-all:
 	done
 # $(MAKE) singularity-build VAR=$${item}
 
+# build a Singularity container using the Docker image containing Singularity
+SINGULARITYDIR:=$(shell python -c 'import os; print(os.path.realpath("$(VAR)"))')
+SINGULARITYIMGDOCKER:=$(VAR).simg
+SINGULARITYFILEDOCKER:=Singularity.$(VAR)
+SINGULARITYDOCKERTAG:=stevekm/containers:Singularity-2.4
+singularity-build-docker:
+	@$(MAKE) check-var
+	@$(MAKE) check-var-dir
+	@$(MAKE) check-Docker-image DOCKERTAG=$(SINGULARITYDOCKERTAG)
+	@[ -f "$(IMG)" ] && { echo ">>> Removing previous image file: $(IMG)" ; rm -f "$(IMG)" ; wait $$! ; } ; \
+	docker run --privileged --rm -ti -v "$(SINGULARITYDIR):/image" "$(SINGULARITYDOCKERTAG)" bash -c 'cd /image && sudo singularity build $(SINGULARITYIMGDOCKER) $(SINGULARITYFILEDOCKER)'
+
 # ~~~~~ DOCKER ~~~~~ #
 DOCKERFILE:=$(VAR)/Dockerfile
 DOCKERREPO:=stevekm/containers

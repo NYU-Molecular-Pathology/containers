@@ -13,7 +13,7 @@ RUN apt-get update && \
     sudo \
     debootstrap
 
-ENV VERSION=2.5.2
+ENV VERSION=2.4
 RUN wget https://github.com/singularityware/singularity/releases/download/$VERSION/singularity-$VERSION.tar.gz && \
 tar xvf singularity-$VERSION.tar.gz && \
 cd singularity-$VERSION && \
