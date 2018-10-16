@@ -105,6 +105,24 @@ The following Docker containers are included for special purposes:
 
 - `Miniconda3-4.4.10`: used as a scratch-pad test container to interactively determine compatible versions of `conda` libraries for installation in other containers
 
+## Build
+
+Docker containers can be built with the following command:
+
+```
+make docker-build VAR=<dirname>
+```
+
+## Test
+
+Docker containers can be tested with the following command:
+
+```
+make docker-test VAR=<dirname>
+```
+
+This will start an interactive shell in the container, where you can verify that your software works. 
+
 # Software
 
 - Docker version 17.12.0-ce, build c97c6d6
