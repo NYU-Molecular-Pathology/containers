@@ -15,7 +15,7 @@ cd containers
 
 The included `Makefile` contains the commands needed to build and test containers in this repository.
 
-It is recommended to build containers one at a time, and test each one after building. 
+It is recommended to build containers one at a time, and test each one after building.
 
 ## Singularity
 
@@ -96,6 +96,14 @@ rsync --dry-run -vrhP -e ssh sambamba-0.6.6/sambamba-0.6.6.simg bob@some.server.
 ```
 
 You will want to copy & paste this to run this with `--dry-run` as shown first, then run again without it when you are sure the transfer looks correct.
+
+# Docker Containers
+
+The following Docker containers are included for special purposes:
+
+- `Singularity-2.4`: used to build Singularity containers
+
+- `Miniconda3-4.4.10`: used as a scratch-pad test container to interactively determine compatible versions of `conda` libraries for installation in other containers
 
 # Software
 
