@@ -2,7 +2,7 @@
 
 This repository contains Docker and Singularity recipes to build software containers for use with sequencing and data analysis.
 
-- NOTE: These instructions are designed to be used from a Linux or Mac computer
+- NOTE: These instructions are designed to be used from a Mac computer. They should also work on Linux systems but many methods will be unnecessary on Linux.
 
 # Usage
 
@@ -21,9 +21,9 @@ It is recommended to build containers one at a time, and test each one after bui
 
 Singularity containers are meant to be used on HPC, where Docker is not allowed. Singularity containers must be built on a system to which you have root (admin) access e.g. your desktop computer. Singularity itself can only be run natively in a Linux environment. To build a Singularity container from your Mac desktop, you need either Vagrant or Docker installed, in which to run Singularity. Instructions for building Singularity containers using both are included. Recipes to create Singularity containers are saved in files named `Singularity` or `Singularity.image-tag-name`, such as `Singularity.GATK-3.8`. The output will consist of an image file (`.simg`), which must be transferred to your target system for use.
 
-### Vagrant
+### Build Singularity containers with Vagrant
 
-Vagrant needs to be installed on your Mac (installation instructions: `VAGRANT.md`). The file `Vagrantfile` included in this repository provides the definitions for the virtual machines to be used for building and testing Singularity containers.
+Vagrant needs to be installed on your Mac (see installation instructions in the included file `VAGRANT.md`). The file `Vagrantfile` included in this repository provides the definitions for the virtual machines to be used for building and testing Singularity containers.
 
 #### Build
 
@@ -41,7 +41,7 @@ make singularity-build VAR=sambamba-0.6.6
 
 - NOTE: If your builds start failing randomly or you start getting strange errors inside your containers, try removing the reference to your Vagrant VM (`make clean-vagrant`) and try again. Be sure to remove old Vagrant VM's from VirtualBox if you do this.
 
-- NOTE: Some Singularity recipes that pull from Docker images tend to fail when building with Vagrant, try building with the Docker container as described below.
+- NOTE: Some Singularity recipes that pull from Docker images tend to fail when building with Vagrant, try building with the Docker container as described further below.
 
 #### Test
 
@@ -53,7 +53,7 @@ make singularity-test VAR=<dirname>
 
 This will load an interactive shell session inside the target container, where you can verify that your software is present and operational.
 
-### Docker
+### Build Singularity containers with Docker
 
 You can build Singularity containers using [Docker](https://docs.docker.com/docker-for-mac/install/). First, you need to build a Docker container that contains Singularity:
 
@@ -121,7 +121,7 @@ Docker containers can be tested with the following command:
 make docker-test VAR=<dirname>
 ```
 
-This will start an interactive shell in the container, where you can verify that your software works. 
+This will start an interactive shell in the container, where you can verify that your software works.
 
 # Software
 

@@ -14,3 +14,4 @@ rm -f Miniconda3-4.4.10-Linux-x86_64.sh
 ENV PATH="/conda/bin:${PATH}"
 RUN conda config --add channels defaults
 RUN conda config --add channels bioconda
+RUN conda config --add channels conda-forge
