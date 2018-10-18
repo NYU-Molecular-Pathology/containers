@@ -1,6 +1,6 @@
 # Software Containers
 
-This repository contains Docker and Singularity recipes to build software containers for use with sequencing and data analysis.
+This repository contains [Docker](https://docs.docker.com/get-started/) and [Singularity](https://www.sylabs.io/guides/2.5/user-guide/quick_start.html) recipes to build software containers for use with sequencing and data analysis.
 
 - NOTE: These instructions are designed to be used from a Mac computer. They should also work on Linux systems but many methods will be unnecessary on Linux.
 
@@ -131,7 +131,7 @@ This will start an interactive shell in the container, where you can verify that
 
 - VirtualBox Version 5.2.2 r119230 (Qt5.6.3)
 
-- Singularity 2.4
+- Singularity 2.4 (build), 2.5.2 (run)
 
 - macOS 10.10, 10.12.6
 
