@@ -2,7 +2,7 @@
 
 This repository contains [Docker](https://docs.docker.com/get-started/) and [Singularity](https://www.sylabs.io/guides/2.5/user-guide/quick_start.html) recipes to build software containers for use with sequencing and data analysis.
 
-- NOTE: These instructions are designed to be used from a Mac computer. They should also work on Linux systems but many methods will be unnecessary on Linux.
+- NOTE: These instructions are designed to be used from a Mac computer with admin access. They should also work on Linux systems but many methods will be unnecessary on Linux.
 
 # Usage
 
