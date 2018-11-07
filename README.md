@@ -19,7 +19,7 @@ It is recommended to build containers one at a time, and test each one after bui
 
 ## Singularity
 
-Singularity containers are meant to be used on HPC, where Docker is not allowed. Singularity containers must be built on a system to which you have root (admin) access e.g. your desktop computer. Singularity itself can only be run natively in a Linux environment. To build a Singularity container from your Mac desktop, you need either Vagrant or Docker installed, in which to run Singularity. Instructions for building Singularity containers using both are included. Recipes to create Singularity containers are saved in files named `Singularity` or `Singularity.image-tag-name`, such as `Singularity.GATK-3.8`. The output will consist of an image file (`.simg`), which must be transferred to your target system for use.
+Singularity containers are meant to be used on HPC, where Docker is not allowed. Singularity containers must be built on a system to which you have root (admin) access e.g. your desktop computer. Singularity itself can only be run natively in a Linux environment. To build a Singularity container from your Mac desktop, you need either Vagrant or Docker installed, in which to run Singularity via a Linux virtual machine/container (included). Instructions for building Singularity containers using both are included. Recipes to create Singularity containers are saved in files named `Singularity` or `Singularity.image-tag-name`, such as `Singularity.GATK-3.8`. The output will consist of an image file (`.simg`), which must be transferred to your target system for use.
 
 ### Build Singularity containers with Vagrant
 
