@@ -38,6 +38,7 @@ Where `VAR` is the name of the directory in this repository that contains the re
 ```
 make singularity-build VAR=sambamba-0.6.6
 ```
+- NOTE: do not include a trailing slash in arguments to `VAR` (e.g. `VAR=sambamba-0.6.6/` will not work, must use `VAR=sambamba-0.6.6`)
 
 - NOTE: If your builds start failing randomly or you start getting strange errors inside your containers, try removing the reference to your Vagrant VM (`make clean-vagrant`) and try again. Be sure to remove old Vagrant VM's from VirtualBox if you do this.
 
