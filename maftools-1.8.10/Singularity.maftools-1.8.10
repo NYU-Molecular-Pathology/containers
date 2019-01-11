@@ -1,0 +1,47 @@
+BootStrap: docker
+From: ubuntu:16.04
+%post
+    # ~~~~~ BASIC SETUP ~~~~~ #
+    apt-get update && \
+    apt-get install -y wget \
+    bzip2 \
+    make \
+    libcurl4-gnutls-dev \
+    libxml2-dev \
+    gcc \
+    g++ \
+    git \
+    zlib1g-dev \
+    libgit2-dev \
+    libssl-dev \
+    gfortran
+
+
+    # ~~~~~ MINICONDA ~~~~~ #
+    wget https://repo.continuum.io/miniconda/Miniconda3-4.4.10-Linux-x86_64.sh && \
+    bash Miniconda3-4.4.10-Linux-x86_64.sh -b -p /conda && \
+    rm -f Miniconda3-4.4.10-Linux-x86_64.sh
+    export PATH="/conda/bin:${PATH}"
+    conda config --add channels defaults && \
+    conda config --add channels conda-forge && \
+    conda config --add channels bioconda && \
+    conda config --add channels r
+
+    # ~~~~~ R ~~~~~ #
+    conda install -c conda-forge -c r -c bioconda \
+    r=3.5.1 \
+    r-base=3.5.1 \
+    r-essentials=3.5.1 \
+    bioconductor-complexheatmap=1.18.1 \
+    bioconductor-variantannotation=1.26.1 \
+    bioconductor-biostrings=2.48.0
+
+    ln -s /bin/gzip /usr/bin/gzip
+    ln -s /bin/tar /bin/gtar
+
+    echo 'install.packages("devtools", repos = "https://cloud.r-project.org"); \
+    library("devtools"); \
+    install_github(repo = "PoisonAlien/maftools")' | R --vanilla
+
+%environment
+    export PATH="/conda/bin:${PATH}"
