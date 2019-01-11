@@ -29,16 +29,17 @@ conda config --add channels r
 
 # ~~~~~ R ~~~~~ #
 RUN conda install -c conda-forge -c r -c bioconda \
-r \
-r-base \
-r-essentials
+r=3.5.1 \
+r-base=3.5.1 \
+r-essentials=3.5.1 \
+bioconductor-complexheatmap=1.18.1 \
+bioconductor-variantannotation=1.26.1 \
+bioconductor-biostrings=2.48.0
+
 RUN ln -s /bin/gzip /usr/bin/gzip
 RUN ln -s /bin/tar /bin/gtar
-RUN echo 'install.packages("BiocManager", repos = "https://cloud.r-project.org"); \
-BiocManager::install("ComplexHeatmap"); \
-BiocManager::install("VariantAnnotation"); \
-BiocManager::install("Biostrings"); \
-install.packages("devtools", repos = "https://cloud.r-project.org"); \
+
+RUN echo 'install.packages("devtools", repos = "https://cloud.r-project.org"); \
 library("devtools"); \
 install_github(repo = "PoisonAlien/maftools")' | R --vanilla
 
@@ -57,70 +58,68 @@ install_github(repo = "PoisonAlien/maftools")' | R --vanilla
 # [8] base
 #
 # other attached packages:
-# [1] maftools_1.8.10     Biobase_2.42.0      BiocGenerics_0.28.0
+# [1] maftools_1.8.10     Biobase_2.40.0      BiocGenerics_0.26.0
 #
 # loaded via a namespace (and not attached):
 #  [1] splines_3.5.1               foreach_1.4.4
 #  [3] assertthat_0.2.0            stats4_3.5.1
-#  [5] BSgenome_1.50.0             GenomeInfoDbData_1.2.0
-#  [7] Rsamtools_1.34.0            ggrepel_0.8.0
+#  [5] BSgenome_1.48.0             GenomeInfoDbData_1.1.0
+#  [7] Rsamtools_1.32.3            ggrepel_0.8.0
 #  [9] pillar_1.3.1                lattice_0.20-38
 # [11] glue_1.3.0                  digest_0.6.18
-# [13] GenomicRanges_1.34.0        RColorBrewer_1.1-2
-# [15] XVector_0.22.0              colorspace_1.3-2
+# [13] GenomicRanges_1.32.7        RColorBrewer_1.1-2
+# [15] XVector_0.20.0              colorspace_1.3-2
 # [17] cowplot_0.9.4               Matrix_1.2-15
 # [19] plyr_1.8.4                  XML_3.98-1.16
 # [21] pkgconfig_2.0.2             bibtex_0.4.2
-# [23] GetoptLong_0.1.7            zlibbioc_1.28.0
+# [23] GetoptLong_0.1.7            zlibbioc_1.26.0
 # [25] purrr_0.2.5                 xtable_1.8-3
-# [27] scales_1.0.0                BiocParallel_1.16.5
+# [27] scales_1.0.0                BiocParallel_1.14.2
 # [29] tibble_2.0.0                pkgmaker_0.27
-# [31] IRanges_2.16.0              ggplot2_3.1.0
-# [33] withr_2.1.2                 SummarizedExperiment_1.12.0
+# [31] IRanges_2.14.12             ggplot2_3.1.0
+# [33] withr_2.1.2                 SummarizedExperiment_1.10.1
 # [35] lazyeval_0.2.1              survival_2.43-3
 # [37] magrittr_1.5                crayon_1.3.4
 # [39] mclust_5.4.2                doParallel_1.0.14
 # [41] NMF_0.21.0                  tools_3.5.1
 # [43] registry_0.5                data.table_1.11.8
 # [45] GlobalOptions_0.1.0         matrixStats_0.54.0
-# [47] gridBase_0.4-7              ComplexHeatmap_1.20.0
-# [49] stringr_1.3.1               S4Vectors_0.20.1
+# [47] gridBase_0.4-7              ComplexHeatmap_1.18.1
+# [49] stringr_1.3.1               S4Vectors_0.18.3
 # [51] munsell_0.5.0               cluster_2.0.7-1
-# [53] rngtools_1.3.1              DelayedArray_0.8.0
-# [55] bindrcpp_0.2.2              Biostrings_2.50.2
-# [57] compiler_3.5.1              GenomeInfoDb_1.18.1
+# [53] rngtools_1.3.1              DelayedArray_0.6.6
+# [55] bindrcpp_0.2.2              Biostrings_2.48.0
+# [57] compiler_3.5.1              GenomeInfoDb_1.16.0
 # [59] rlang_0.3.1                 grid_3.5.1
 # [61] RCurl_1.95-4.11             iterators_1.0.10
 # [63] rjson_0.2.20                circlize_0.4.5
 # [65] bitops_1.0-6                gtable_0.2.0
 # [67] codetools_0.2-16            reshape2_1.4.3
-# [69] R6_2.3.0                    GenomicAlignments_1.18.1
+# [69] R6_2.3.0                    GenomicAlignments_1.16.0
 # [71] gridExtra_2.3               dplyr_0.7.8
-# [73] rtracklayer_1.42.1          bindr_0.1.1
+# [73] rtracklayer_1.40.6          bindr_0.1.1
 # [75] shape_1.4.4                 stringi_1.2.4
 # [77] Rcpp_1.0.0                  wordcloud_2.6
 # [79] tidyselect_0.2.5
 # Package    Version
-# AnnotationDbi     1.44.0
+# AnnotationDbi     1.42.1
 #      BH   1.69.0-1
-# BSgenome     1.50.0
-# Biobase     2.42.0
-# BiocGenerics     0.28.0
-# BiocManager     1.30.4
-# BiocParallel     1.16.5
-# BiocVersion      3.8.0
-# Biostrings     2.50.2
-# ComplexHeatmap     1.20.0
+# BSgenome     1.48.0
+# Biobase     2.40.0
+# BiocGenerics     0.26.0
+# BiocParallel     1.14.2
+# Biostrings     2.48.0
+# ComplexHeatmap     1.18.1
 #     DBI      1.0.0
-# DelayedArray      0.8.0
-# GenomeInfoDb     1.18.1
-# GenomeInfoDbData      1.2.0
-# GenomicAlignments     1.18.1
-# GenomicFeatures     1.34.1
-# GenomicRanges     1.34.0
+# DelayedArray      0.6.6
+# GenomeInfoDb     1.16.0
+# GenomeInfoDbData      1.1.0
+# GenomicAlignments     1.16.0
+# GenomicFeatures     1.32.3
+# GenomicRanges     1.32.7
 # GetoptLong      0.1.7
 # GlobalOptions      0.1.0
-# IRanges     2.16.0
+# IRanges    2.14.12
 # IRdisplay      0.7.0
 # IRkernel     0.8.14
 # KernSmooth    2.23-15
@@ -132,22 +131,22 @@ install_github(repo = "PoisonAlien/maftools")' | R --vanilla
 # RSQLite      2.1.1
 #    Rcpp      1.0.0
 # RcppRoll      0.3.0
-# Rsamtools     1.34.0
-# S4Vectors     0.20.1
+# Rsamtools     1.32.3
+# S4Vectors     0.18.3
 # SQUAREM  2017.10-1
-# SummarizedExperiment     1.12.0
+# SummarizedExperiment     1.10.1
 #     TTR     0.23-4
-# VariantAnnotation     1.28.8
+# VariantAnnotation     1.26.1
 #     XML  3.98-1.16
-# XVector     0.22.0
+# XVector     0.20.0
 # assertthat      0.2.0
 # backports      1.1.3
 # base64enc      0.1-3
 #  bibtex      0.4.2
 #   bindr      0.1.1
 # bindrcpp      0.2.2
-# biomaRt     2.38.0
-#     bit     1.1-14
+# biomaRt     2.36.1
+#     bit     1.1-12
 #   bit64      0.9-7
 #  bitops      1.0-6
 #    blob      1.1.1
@@ -260,7 +259,7 @@ install_github(repo = "PoisonAlien/maftools")' | R --vanilla
 #   rpart     4.1-13
 # rprojroot      1.3-2
 # rstudioapi        0.8
-# rtracklayer     1.42.1
+# rtracklayer     1.40.6
 #   rvest      0.3.2
 #  scales      1.0.0
 # selectr      0.4-1
@@ -291,5 +290,9 @@ install_github(repo = "PoisonAlien/maftools")' | R --vanilla
 #  xtable      1.8-3
 #     xts     0.11-1
 #    yaml      2.2.0
-# zlibbioc     1.28.0
+# zlibbioc     1.26.0
 #     zoo      1.8-4
+# > ip <- as.data.frame(installed.packages()[,c(1,3:4)])
+# > rownames(ip) <- NULL
+# > ip <- ip[is.na(ip$Priority),1:2,drop=FALSE]
+# > print(ip, row.names=FALSE)
