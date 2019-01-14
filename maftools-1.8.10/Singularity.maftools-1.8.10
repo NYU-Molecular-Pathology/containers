@@ -34,14 +34,31 @@ From: ubuntu:16.04
     r-essentials=3.5.1 \
     bioconductor-complexheatmap=1.18.1 \
     bioconductor-variantannotation=1.26.1 \
-    bioconductor-biostrings=2.48.0
+    bioconductor-biostrings=2.48.0 \
+    r-biocmanager=1.30.4 \
+    r-bibtex=0.4.2 \
+    r-pkgmaker=0.27 \
+    r-registry=0.5 \
+    r-rngtools=1.3.1 \
+    r-gridbase=0.4_7 \
+    r-doparallel=1.0.11 \
+    r-cowplot=0.9.3 \
+    r-cometexacttest=0.1.5 \
+    r-nmf=0.21.0 \
+    r-ggrepel=0.8.0 \
+    r-mclust=5.4.1 \
+    r-wordcloud=2.5 \
+    r-gridextra=2.3
 
     ln -s /bin/gzip /usr/bin/gzip
     ln -s /bin/tar /bin/gtar
 
-    echo 'install.packages("devtools", repos = "https://cloud.r-project.org"); \
-    library("devtools"); \
-    install_github(repo = "PoisonAlien/maftools")' | R --vanilla
+    echo 'BiocManager::install("maftools", version="3.8", update=FALSE)' | R --vanilla
+
+%test
+    echo "library('maftools')" | R --vanilla
 
 %environment
     export PATH="/conda/bin:${PATH}"
+    export LC_ALL="C.UTF-8"
+    export LANG="C.UTF-8"
