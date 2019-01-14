@@ -50,9 +50,6 @@ From: ubuntu:16.04
     r-wordcloud=2.5 \
     r-gridextra=2.3
 
-    ln -s /bin/gzip /usr/bin/gzip
-    ln -s /bin/tar /bin/gtar
-
     echo 'BiocManager::install("maftools", version="3.8", update=FALSE)' | R --vanilla
 
 %test

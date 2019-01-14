@@ -50,9 +50,6 @@ r-mclust=5.4.1 \
 r-wordcloud=2.5 \
 r-gridextra=2.3
 
-RUN ln -s /bin/gzip /usr/bin/gzip
-RUN ln -s /bin/tar /bin/gtar
-
 RUN echo 'BiocManager::install("maftools", version="3.8", update=FALSE)' | R --vanilla
 
 # > library('maftools'); sessionInfo()
