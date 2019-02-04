@@ -4,6 +4,8 @@ This repository contains [Docker](https://docs.docker.com/get-started/) and [Sin
 
 - NOTE: These instructions are designed to be used from a Mac computer with admin access. They should also work on Linux systems but many methods will be unnecessary on Linux.
 
+- Docker for Mac can be downloaded here: https://download.docker.com/mac/stable/Docker.dmg
+
 # Usage
 
 First, clone this repository:
