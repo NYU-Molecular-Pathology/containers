@@ -59,7 +59,7 @@ singularity-test:
 	@$(MAKE) check-singularityimage
 	@echo ">>> Starting Vagrant..." && \
 	vagrant up test && \
-	vagrant ssh test -c "singularity shell /vagrant/$(IMG)"
+	vagrant ssh test -c "singularity shell -B /staging /vagrant/$(IMG)"
 
 # copy all image files to Big Purple HPC
 USER:=$(shell echo $$USER)
@@ -105,4 +105,4 @@ docker-build:
 
 docker-test:
 	@$(MAKE) check-Docker-image || { echo ">>> Docker image does not exist, building...";  $(MAKE) docker-build; }
-	@docker run --rm -ti "$(DOCKERTAG)" bash
+	@docker run --rm -ti -v "$$(pwd)/staging:/staging" "$(DOCKERTAG)" bash
